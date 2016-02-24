@@ -68,4 +68,13 @@ pg_receivexlog  pg_recvlogical  pg_restore      pgbench         pgrep
 ```
 
 ## Available scripts
-N/A
+If you set the env vars described below, the following scripts will run
+### MongoDB backup
+```
+MONGO_DB_HOST=<host:port>
+MONGO_DB_USER=<username>
+MONGO_DB_PASS=<password>
+MONGO_DB_NAME=<database>
+MONGO_S3_REGION=AWSS3Region>
+MONGO_S3_BUCKET=<AWSS3Bucket>
+```
