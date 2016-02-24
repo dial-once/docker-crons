@@ -53,13 +53,17 @@ mongo
 
 ### MySQL and MariaDB commands
 ```
-mysql                 mysql_fix_extensions  mysqlaccess           mysqlanalyze          mysqlcheck            mysqldumpslow         mysqloptimize         mysqlreport           mysqlslap             
-mysql_find_rows       mysql_waitpid         mysqladmin            mysqlbug              mysqldump             mysqlimport           mysqlrepair           mysqlshow          
+mysql                 mysql_fix_extensions  mysqlaccess           mysqlanalyze
+mysqlcheck            mysqldumpslow         mysqloptimize         mysqlreport
+mysqlslap             mysql_find_rows       mysql_waitpid         mysqladmin
+mysqlbug              mysqldump             mysqlimport           mysqlrepair
+mysqlshow          
 ```
 
 ### Postgres commands
 ```
-pg              pg_basebackup   pg_dump         pg_dumpall      pg_isready      pg_receivexlog  pg_recvlogical  pg_restore      pgbench         pgrep   
+pg              pg_basebackup   pg_dump         pg_dumpall      pg_isready
+pg_receivexlog  pg_recvlogical  pg_restore      pgbench         pgrep   
 ```
 
 ## Available scripts
