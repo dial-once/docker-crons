@@ -32,7 +32,7 @@ Env vars to set on your container if you use the AWS CLI in your scripts
 AWS_ACCESS_KEY_ID=<AWSaccessKey>
 AWS_SECRET_ACCESS_KEY=<AWSsecretKey>
 AWS_DEFAULT_REGION=<AWSregion>
-``
+```
 
 ### Tutum CLI
 ```sh
