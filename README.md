@@ -5,7 +5,6 @@ A docker container used to launch crons tasks easily
 ## Add a cron
 Modify the crontab file and place your files into the ``/scripts`` folder
 
-
 ## Sample
 
 ``crontab``
@@ -21,3 +20,35 @@ echo "It works!"
 This will print 'It works!' to the docker output
 
 Script the ``>> /var/log/cron-stdout.log 2>&1`` part in the crontab if you don't want the output to be seen in the container output (credentials, etc.)
+
+
+## Bundled tools
+Each of these can be of course removed from the container if you are not using them, in the Dockerfile.
+
+### AWS CLI
+
+Env vars to set on your container if you use the AWS CLI in your scripts
+```sh
+AWS_ACCESS_KEY_ID – AWS access key.
+AWS_SECRET_ACCESS_KEY – AWS secret key. Access and secret key variables override credentials stored in credential and config files.
+AWS_DEFAULT_REGION – AWS region. This variable overrides the default region of the in-use profile, if set.
+``
+
+### Tutum CLI
+N/A
+
+### Docker Cloud CLI
+N/A
+
+### Mongodb commands
+You can use the mongo command inside your container as it is installed by default
+
+### MySQL and MariaDB commands
+N/A
+
+### Postgres commands
+N/A
+
+
+## Available scripts
+N/A
