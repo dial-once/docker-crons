@@ -1,1 +1,2 @@
 * * * * * root /bin/sh /scripts/hello-world.sh >> /var/log/cron-stdout.log 2>&1
+00 00 * * * root /bin/sh /scripts/mongodb-to-s3.sh >> /var/log/cron-stdout.log 2>&1
