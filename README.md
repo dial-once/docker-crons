@@ -47,14 +47,20 @@ DOCKERCLOUD_PASS=<password>
 ```
 
 ### Mongodb commands
-You can use the ``mongo`` command inside your container as it is installed by default
+```
+mongo
+```
 
 ### MySQL and MariaDB commands
-N/A
+```
+mysql                 mysql_fix_extensions  mysqlaccess           mysqlanalyze          mysqlcheck            mysqldumpslow         mysqloptimize         mysqlreport           mysqlslap             
+mysql_find_rows       mysql_waitpid         mysqladmin            mysqlbug              mysqldump             mysqlimport           mysqlrepair           mysqlshow          
+```
 
 ### Postgres commands
-N/A
-
+```
+pg              pg_basebackup   pg_dump         pg_dumpall      pg_isready      pg_receivexlog  pg_recvlogical  pg_restore      pgbench         pgrep   
+```
 
 ## Available scripts
 N/A
