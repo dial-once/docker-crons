@@ -29,19 +29,25 @@ Each of these can be of course removed from the container if you are not using t
 
 Env vars to set on your container if you use the AWS CLI in your scripts
 ```sh
-AWS_ACCESS_KEY_ID – AWS access key.
-AWS_SECRET_ACCESS_KEY – AWS secret key. Access and secret key variables override credentials stored in credential and config files.
-AWS_DEFAULT_REGION – AWS region. This variable overrides the default region of the in-use profile, if set.
+AWS_ACCESS_KEY_ID=<AWSaccessKey>
+AWS_SECRET_ACCESS_KEY=<AWSsecretKey>
+AWS_DEFAULT_REGION=<AWSregion>
 ``
 
 ### Tutum CLI
-N/A
+```sh
+TUTUM_USER=<username>
+TUTUM_APIKEY=<password>
+```
 
 ### Docker Cloud CLI
-N/A
+```sh
+DOCKERCLOUD_USER=<username>
+DOCKERCLOUD_PASS=<password>
+```
 
 ### Mongodb commands
-You can use the mongo command inside your container as it is installed by default
+You can use the ``mongo`` command inside your container as it is installed by default
 
 ### MySQL and MariaDB commands
 N/A
