@@ -13,5 +13,6 @@ RUN chmod 0644 /etc/cron.d/backup-cron && \
   touch /var/log/syslog
 
 COPY scripts /scripts
+RUN touch /var/log/cron-stdout.log
 
-CMD rsyslogd && cron && tail -F /var/log/syslog
+CMD rsyslogd && cron && tail -F /var/log/syslog /var/log/cron-stdout.log

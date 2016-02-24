@@ -1,1 +1,1 @@
-hello-world.sh
+echo "It works!"

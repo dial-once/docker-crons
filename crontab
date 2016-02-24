@@ -1,1 +1,1 @@
-* * * * * root /bin/sh /scripts/hello-world.sh
+* * * * * root /bin/sh /scripts/hello-world.sh >> /var/log/cron-stdout.log 2>&1
