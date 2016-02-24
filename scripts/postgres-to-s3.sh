@@ -31,5 +31,4 @@ gzip $archive_name
 
 aws s3 cp $archive_name.gz "s3://$POSTGRES_S3_BUCKET/$archive_name.gz" --region $POSTGRES_S3_REGION
 
-rm $archive_name
 rm $archive_name.gz
