@@ -48,7 +48,8 @@ DOCKERCLOUD_PASS=<password>
 
 ### Mongodb commands
 ```
-mongo
+mongodump     mongoexport   mongofiles    mongoimport   mongooplog
+mongoperf     mongorestore  mongostat     mongotop 
 ```
 
 ### MySQL and MariaDB commands
