@@ -68,8 +68,11 @@ pg_receivexlog  pg_recvlogical  pg_restore      pgbench         pgrep
 ```
 
 ## Available scripts
-If you set the env vars described below, the following scripts will run
+To launch one of the following scripts, the env vars must be set
+
 ### MongoDB backup
+
+Require AWS env vars
 ```
 MONGO_DB_HOST=<host:port>
 MONGO_DB_USER=<username>
