@@ -19,7 +19,7 @@ echo "It works!"
 
 This will print 'It works!' to the docker output
 
-Script the ``>> /var/log/cron-stdout.log 2>&1`` part in the crontab if you don't want the output to be seen in the container output (credentials, etc.)
+Skip the ``>> /var/log/cron-stdout.log 2>&1`` part in the crontab if you don't want the output to be seen in the container output (credentials, etc.)
 
 
 ## Bundled tools
