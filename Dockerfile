@@ -6,7 +6,7 @@ RUN \
   echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
   echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list && \
   apt-get update && \
-  apt-get install -y ca-certificates vim cron mongodb-org-tools rsyslog python-pip mariadb-client postgresql-client-9.5 && \
+  apt-get install -y ca-certificates vim cron mongodb-org-tools rsyslog python-pip mariadb-client postgresql-client-9.5 openssh-client expect && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   pip install tutum awscli docker-cloud
