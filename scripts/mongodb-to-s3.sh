@@ -21,10 +21,12 @@
 mkdir -p /data
 cd /data
 
-archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y").gzip
+archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y").tar.gz
 echo "Archive name: $archive_name"
 
-mongodump --db $MONGO_DB_NAME --gzip --archive=$archive_name -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS -d $MONGO_DB_NAME
+mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS -d $MONGO_DB_NAME
+
+tar -zcvf $archive_name dump
 
 archive_length=$(stat -c%s "$archive_name")
 echo "Archive size: $archive_length"
@@ -32,3 +34,4 @@ echo "Archive size: $archive_length"
 aws s3 cp $archive_name "s3://$MONGO_S3_BUCKET/$archive_name" --region $MONGO_S3_REGION
 
 rm $archive_name
+rm -rf dump
