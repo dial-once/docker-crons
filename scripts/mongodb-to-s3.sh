@@ -24,7 +24,7 @@ cd /data
 archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y").tar.gz
 echo "Archive name: $archive_name"
 
-mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS -d $MONGO_DB_NAME
+mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS
 
 tar -zcvf $archive_name dump
 
