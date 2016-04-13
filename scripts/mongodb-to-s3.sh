@@ -26,7 +26,7 @@ echo "Archive name: $archive_name"
 
 mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS
 
-tar -zcvf $archive_name dump
+tar -zcvf $archive_name dump --remove-files
 
 archive_length=$(stat -c%s "$archive_name")
 echo "Archive size: $archive_length"
