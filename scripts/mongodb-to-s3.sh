@@ -24,7 +24,11 @@ cd /data
 archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y").tar.gz
 echo "Archive name: $archive_name"
 
-mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS
+appendCmd=""
+
+if [ "$MONGO_EXCLUDE" ]; then appendCmd="--excludeCollection=$MONGO_EXCLUDE" ;fi
+
+mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS $appendCmd
 
 tar -zcvf $archive_name dump --remove-files
 
