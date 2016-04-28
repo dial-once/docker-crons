@@ -11,7 +11,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   pip install tutum awscli docker-cloud
 
-ADD crontab /etc/cron.d/backup-cron
+COPY crontab /etc/cron.d/backup-cron
 RUN chmod 0644 /etc/cron.d/backup-cron && \
   touch /var/log/syslog
 
