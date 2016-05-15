@@ -25,7 +25,7 @@ echo "Archive name: $archive_name"
 
 expect -c "  
    set timeout 1
-   spawn scp -P $SCP_PORT -r $SCP_USER@$SCP_HOST:$SCP_FOLDER backup/
+   spawn scp -P $SCP_PORT -r -o \"StrictHostKeyChecking no\" $SCP_USER@$SCP_HOST:$SCP_FOLDER backup/
    expect yes/no { send yes\r ; exp_continue }
    expect password: { send $SCP_PASSWORD\r }
    expect 100%
