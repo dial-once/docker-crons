@@ -25,10 +25,12 @@ archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y").tar.gz
 echo "Archive name: $archive_name"
 
 appendCmd=""
+appendCredentials=""
 
 if [ "$MONGO_EXCLUDE" ]; then appendCmd="--excludeCollection=$MONGO_EXCLUDE" ;fi
+if [ "$MONGO_DB_USER" ]; then appendCredentials="-u $MONGO_DB_USER -p $MONGO_DB_PASS" ;fi
 
-mongodump --db $MONGO_DB_NAME -h $MONGO_DB_HOST -u $MONGO_DB_USER -p $MONGO_DB_PASS $appendCmd
+mongodump --gzip --db $MONGO_DB_NAME -h $MONGO_DB_HOST $appendCredentials $appendCmd
 
 tar -zcvf $archive_name dump --remove-files
 
