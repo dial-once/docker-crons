@@ -18,4 +18,4 @@ RUN chmod 0644 /etc/cron.d/backup-cron && \
 COPY scripts /scripts
 RUN touch /var/log/cron-stdout.log
 
-CMD env > /root/env && sed -i -e 's/^/export /' /root/env && chmod +x /root/env && rsyslogd && cron && tail -F /var/log/syslog /var/log/cron-stdout.log
+CMD env > /root/env && sed -i '/GPG_KEYS/d' /root/env && sed -i -e 's/^/export /' /root/env && chmod +x /root/env && rsyslogd && cron && tail -F /var/log/syslog /var/log/cron-stdout.log
