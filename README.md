@@ -74,10 +74,11 @@ To launch one of the following scripts, the env vars must be set
 
 Require AWS env vars
 ```
-MONGO_DB_HOST=<host:port>
+MONGO_DB_HOST=<host>
+MONGO_DB_PORT=<port>
+MONGO_DB_NAME=<database>
 MONGO_DB_USER=<username>
 MONGO_DB_PASS=<password>
-MONGO_DB_NAME=<database>
 MONGO_S3_REGION=<AWSS3Region>
 MONGO_S3_BUCKET=<AWSS3Bucket>
 ```
@@ -86,11 +87,11 @@ MONGO_S3_BUCKET=<AWSS3Bucket>
 
 Require AWS env vars
 ```
-POSTGRES_DB=<database>
-POSTGRES_PASSWORD= 
-POSTGRES_USER=<username>
 POSTGRES_HOST=<host> 
 POSTGRES_PORT=<port>
+POSTGRES_DB=<database>
+POSTGRES_USER=<username>
+POSTGRES_PASS=<password>
 POSTGRES_S3_REGION=<AWSS3Region>
 POSTGRES_S3_BUCKET=<AWSS3Bucket>
 ```
@@ -99,11 +100,11 @@ POSTGRES_S3_BUCKET=<AWSS3Bucket>
 
 Require AWS env vars
 ```
-MARIADB_DB=<database>
-MARIADB_PASSWORD=<password>
-MARIADB_USER=<username>
 MARIADB_HOST=<host>
 MARIADB_PORT=<port>
+MARIADB_DB=<database>
+MARIADB_USER=<username>
+MARIADB_PASS=<password>
 MARIADB_S3_REGION=<AWSS3Region>
 MARIADB_S3_BUCKET=<AWSS3Bucket>
 ```
@@ -112,11 +113,20 @@ MARIADB_S3_BUCKET=<AWSS3Bucket>
 
 Require AWS env vars
 ```
-SCP_HOST=
-SCP_USER=
-SCP_FOLDER=
-SCP_PASSWORD=
-SCP_PORT=
-SCP_S3_BUCKET=
-SCP_S3_REGION=
+SCP_HOST=<host>
+SCP_PORT=<port>
+SCP_USER=<username>
+SCP_PASS=<password>
+SCP_FOLDER=<folder>
+SCP_S3_REGION=<AWSS3Region>
+SCP_S3_BUCKET=<AWSS3Bucket>
+```
+
+## Notifications
+
+### Slack notifications
+
+Send notifications to Slack
+```
+SLACK_WEBHOOK_URL=<SlackWebhookUrl>
 ```
