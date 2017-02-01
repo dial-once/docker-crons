@@ -5,10 +5,11 @@
 # # # # # # #
 # Env vars  #
 # # # # # # #
-# - MONGO_DB_NAME - mongodb database to MONGO
+# - MONGO_DB_HOST - mongodb hostname
+# - MONGO_DB_PORT - mongodb port
+# - MONGO_DB_NAME - mongodb database 
 # - MONGO_DB_USER - mongodb username to login
 # - MONGO_DB_PASS - mongodb db password to login
-# - MONGO_DB_HOST - mongodb hostname
 # - MONGO_S3_BUCKET - s3 bucket name
 # - MONGO_S3_REGION - s3 region name
 # 
@@ -21,23 +22,43 @@
 mkdir -p /data
 cd /data
 
-archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y").tar.gz
-echo "Archive name: $archive_name"
+archive_name=$MONGO_DB_NAME.$(date +"%m_%d_%Y")
+echo "Archive name: $archive_name.tar.gz"
 
 appendCmd=""
 appendCredentials=""
 
-if [ "$MONGO_EXCLUDE" ]; then appendCmd="--excludeCollection=$MONGO_EXCLUDE" ;fi
+if [ "$MONGO_EXCLUDE" ]; then appendCmd="--excludeCollection $MONGO_EXCLUDE" ;fi
 if [ "$MONGO_DB_USER" ]; then appendCredentials="-u $MONGO_DB_USER -p $MONGO_DB_PASS" ;fi
 
-mongodump --gzip --db $MONGO_DB_NAME -h $MONGO_DB_HOST $appendCredentials $appendCmd
+if mongodump --gzip --host $MONGO_DB_HOST --port $MONGO_DB_PORT --db $MONGO_DB_NAME $appendCredentials $appendCmd; then
+	echo "MongoDB dump succeeded"
+else
+	err_message+="MongoDB dump failed "
+	echo $err_message
+fi
 
-tar -zcvf $archive_name dump --remove-files
+tar -zcvf $archive_name.tar.gz dump --remove-files
 
-archive_length=$(stat -c%s "$archive_name")
+archive_length=$(du -h "$archive_name.tar.gz" | head -n1 | awk '{print $1;}')
 echo "Archive size: $archive_length"
 
-aws s3 cp $archive_name "s3://$MONGO_S3_BUCKET/$archive_name" --region $MONGO_S3_REGION
+if aws s3 cp $archive_name.tar.gz "s3://$MONGO_S3_BUCKET/$archive_name.tar.gz" --region $MONGO_S3_REGION; then
+	echo 'Upload to S3 succeeded'
+else
+	err_message=$err_message" Upload to S3 failed"
+	echo $err_message
+fi
 
-rm $archive_name
+rm $archive_name.tar.gz
 rm -rf dump
+
+# Send notification to Slack
+#  SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXXXXX
+if [ "$SLACK_WEBHOOK_URL" ]; then
+	if [ "$err_message" ]; then
+		curl -X POST --data-urlencode 'payload={"text": "MongoDB backup failed: '"$err_message"'"}' ${SLACK_WEBHOOK_URL}
+	else
+		curl -X POST --data-urlencode 'payload={"text": "MongoDB backup succeed. `'$archive_name.gz' '$archive_length'`"}' ${SLACK_WEBHOOK_URL}
+	fi
+fi
