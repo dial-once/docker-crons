@@ -18,6 +18,7 @@
 . /root/env
 
 [ -z "$MONGO_DB_NAME" ] && exit;
+[ -z "$DEPLOY_ENV" ] && exit;
 
 mkdir -p /data
 cd /data
@@ -43,7 +44,7 @@ tar -zcvf $archive_name.tar.gz dump --remove-files
 archive_length=$(du -h "$archive_name.tar.gz" | head -n1 | awk '{print $1;}')
 echo "Archive size: $archive_length"
 
-if aws s3 cp $archive_name.tar.gz "s3://$MONGO_S3_BUCKET/$archive_name.tar.gz" --region $MONGO_S3_REGION; then
+if aws s3 cp $archive_name.tar.gz "s3://$MONGO_S3_BUCKET/${archive_name}-${DEPLOY_ENV}.tar.gz" --region $MONGO_S3_REGION; then
 	echo 'Upload to S3 succeeded'
 else
 	err_message=$err_message" Upload to S3 failed"
@@ -59,6 +60,6 @@ if [ "$SLACK_WEBHOOK_URL" ]; then
 	if [ "$err_message" ]; then
 		curl -X POST --data-urlencode 'payload={"text": "MongoDB backup failed: '"$err_message"'"}' ${SLACK_WEBHOOK_URL}
 	else
-		curl -X POST --data-urlencode 'payload={"text": "MongoDB backup succeed. `'$archive_name.gz' '$archive_length'`"}' ${SLACK_WEBHOOK_URL}
+		curl -X POST --data-urlencode 'payload={"text": "MongoDB backup succeed. `'${archive_name}-${DEPLOY_ENV}.gz' '$archive_length'`"}' ${SLACK_WEBHOOK_URL}
 	fi
 fi
