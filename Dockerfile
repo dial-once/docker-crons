@@ -1,9 +1,9 @@
 FROM debian:jessie
 
 RUN \
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 91FA4AD5 && \
   apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8 && \
-  echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
+  echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.6 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list && \
   echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list && \
   apt-get update && \
   apt-get install -y ca-certificates curl cron mongodb-org-tools rsyslog python-pip mariadb-client postgresql-client-9.5 openssh-client expect && \
